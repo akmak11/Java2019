@@ -11,9 +11,18 @@ class Vowel
 	{
 		System.out.println("Enter a character to check whether it is a vowel or consonant:");
 		Scanner scan = new Scanner(System.in);	
-		char ch = scan.next().charAt(0);	//character input
-		
-		if (ch=='A'||ch=='E'||ch=='I'||ch=='O'||ch=='U'||ch=='a'||ch=='e'||ch=='i'||ch=='o'||ch=='u')	//checks for vowel
+		String ch = scan.nextLine();	//character input
+		do
+		{
+			if (ch.length()>1)
+			{
+				System.out.println("Re-enter the character");
+				ch = scan.nextLine();
+			}
+		}
+		while (ch.length()>1);
+		char c = ch.charAt(0);
+		if (c=='A'||c=='E'||c=='I'||c=='O'||c=='U'||c=='a'||c=='e'||c=='i'||c=='o'||c=='u')	//checks for vowel
 			System.out.println("The entered character is a vowel");
 		else
 			System.out.println("The entered character is a consonant");
