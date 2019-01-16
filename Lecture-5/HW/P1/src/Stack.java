@@ -13,6 +13,11 @@ class Stack
         return (topOfStack<0); 
     } 
     
+    boolean isFull() 
+    { 
+        return (topOfStack>0); 
+    }
+
     boolean push(int x) 
     { 
         if (topOfStack >= (10 - 1))
@@ -34,11 +39,12 @@ class Stack
         { 
             System.out.println("Stack Underflow"); 
             return 0; 
-        } 
+        }
         else
         { 
-            int x = stack[topOfStack--]; 
-            return x; 
+            int x = stack[topOfStack--];
+            System.out.println(x+" has been popped.");
+            return x;
         } 
     } 
 }
