@@ -8,8 +8,8 @@ public class EmployeeTest
 		String fName = scan.nextLine();
 		String lName = scan.nextLine();
 		double mSalary = scan.nextDouble();
-		String fAddress = scan.nextLine();
 		scan.nextLine();
+		String fAddress = scan.nextLine();
 		String lAddress = scan.nextLine();
 		long pc = scan.nextLong();
 		System.out.println("\n");

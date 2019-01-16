@@ -5,7 +5,7 @@ public class Sales
 
   	public static void main(String[]args)
   	{
-    	// declare and initialize the array //
+    	// declare and initialize the array
       	float sales[][] = new float [5][4];
 
 
@@ -27,10 +27,10 @@ public class Sales
  	
  	void getSales(float sales[][])
   	{
-     	int salesPerson;
-     	int product;
-     	float value;
- 		System.out.println("Enter the salesperson, product, and total sales:");
+     	  int salesPerson;
+     	  int product;
+     	  float value;
+ 		    System.out.println("Enter the salesperson, product, and total sales:");
       	for (int i=0;i<4;i++)
       	{
       		System.out.print("SalesPerson: ");
@@ -40,9 +40,9 @@ public class Sales
       		product = scan.nextInt();
       		System.out.println();
       		System.out.print("Sales: ");
-			value = scan.nextFloat();
-			System.out.println("\n");
-          	sales[product - 1][salesPerson - 1] += value;
+          value = scan.nextFloat();
+          System.out.println("\n");
+          sales[product - 1][salesPerson - 1] += value;
       	}
     }
 
