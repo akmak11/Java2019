@@ -11,9 +11,9 @@ public class EmployeeTest
 		for (i=0;i<num;i++)
 		{
 			employees[i] = new Employee();
-			System.out.println("Enter the name of Employee:");
+			System.out.print("Enter the name of Employee:");
 			employees[i].name = scan.nextLine();
-			if (i==0) scan.nextLine();
+			scan.nextLine();
 			System.out.println("Enter the Year of Joining:");
 			employees[i].yearOfJoining = scan.nextInt();
 			System.out.println("Enter the address of Employee:");

@@ -12,10 +12,7 @@ class HeartRates
 	String firstName;
 	String lastName;
 	DateOfBirth dob = new DateOfBirth();
-	HeartRates()
-	{
-		;
-	}
+	
 	HeartRates(String fName,String lName,int day,int month,int year)
 	{
 		firstName=fName;
@@ -24,9 +21,10 @@ class HeartRates
 		dob.month=month;
 		dob.year=year;
 	}
+
 	double calcAgeInYears()
 	{
-		return (dob.year+((dob.month*30)+dob.days)/365);
+		return (2019-dob.year);
 	}
 	double maxHeartRate()
 	{
@@ -34,7 +32,7 @@ class HeartRates
 	}
 	double targetMaxHeartRate()
 	{
-		return (1/2*this.maxHeartRate());
+		return (0.5*this.maxHeartRate());
 	}
 	double targetMinHeartRate()
 	{
