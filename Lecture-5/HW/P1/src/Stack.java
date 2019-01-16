@@ -1,28 +1,28 @@
 class Stack
 { 
-    static final int MAX = 1000; 
-    int top; 
-    int a[] = new int[MAX]; // Maximum size of Stack 
+    int stack[] = new int[10];
+    int topOfStack;
+  
+    Stack() 
+    { 
+        topOfStack = -1; 
+    } 
   
     boolean isEmpty() 
     { 
-        return (top < 0); 
+        return (topOfStack<0); 
     } 
-    Stack() 
-    { 
-        top = -1; 
-    } 
-  
+    
     boolean push(int x) 
     { 
-        if (top >= (MAX - 1))
+        if (topOfStack >= (10 - 1))
         { 
             System.out.println("Stack Overflow"); 
             return false; 
         } 
         else
         { 
-            a[++top] = x; 
+            stack[++topOfStack] = x; 
             System.out.println(x + " pushed into stack"); 
             return true; 
         } 
@@ -30,14 +30,14 @@ class Stack
   
     int pop() 
     { 
-        if (top < 0)
+        if (topOfStack<0)
         { 
             System.out.println("Stack Underflow"); 
             return 0; 
         } 
         else
         { 
-            int x = a[top--]; 
+            int x = stack[topOfStack--]; 
             return x; 
         } 
     } 
