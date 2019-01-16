@@ -13,6 +13,7 @@ public class StackTest
             System.out.println("2. pop()");
             System.out.println("3. isEmpty()");
             System.out.println("4. isFull()");
+            System.out.println("5. spaceLeft()");
             int choice = scan.nextInt();
             switch(choice)
             {
@@ -32,6 +33,11 @@ public class StackTest
 
                 case 4:
                 System.out.println(s.isFull());
+                break;
+
+                case 5:
+                int spcLeft=s.spaceLeft();
+                System.out.println(spcLeft);
                 break;
 
                 default: System.out.println("Invalid Choice");

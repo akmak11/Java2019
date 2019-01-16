@@ -13,6 +13,10 @@ class Stack
         return (topOfStack<0); 
     } 
     
+    int spaceLeft()
+    {
+        return(9-topOfStack);
+    }
     boolean isFull() 
     { 
         return (topOfStack>0); 
