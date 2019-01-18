@@ -1,8 +1,8 @@
 import java.util.*;
 class Distance
 {
-	float feet;
-	float inch;
+	private float feet;
+	private float inch;
 	Distance(float f, float i)
 	{
 		this.feet=f;
@@ -29,15 +29,22 @@ class Distance
 	{
 		return this.inch;
 	}
-	void sum(Distance obj)
+	static Distance sum(Distance obj1,Distance obj2)
 	{
-		float sumfeet = this.feet+obj.feet;
-		float suminch = this.inch+obj.inch;
-		while (suminch>12)
+		Distance temp = new Distance();
+		temp.feet = obj1.feet+obj2.feet;
+		temp.inch = obj1.inch+obj2.inch;
+		while (temp.inch>12)
 		{
-			sumfeet+=1;
-			suminch=suminch%12;
+			temp.feet+=1;
+			temp.inch=temp.inch%12;
 		}
-		System.out.println("Sum of distances = "+sumfeet+"feet "+suminch+"inch");
+		return temp;
 	}
+
+	void display()
+	{
+		System.out.println("Sum of distances = "+this.feet+"feet "+this.inch+"inch");
+	}
+	
 }

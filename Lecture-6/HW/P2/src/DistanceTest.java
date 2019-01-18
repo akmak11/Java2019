@@ -1,5 +1,5 @@
 import java.util.*;
-class DistanceTest
+class DistanceTest_Static
 {
 	public static void main (String[]args)
 	{
@@ -14,6 +14,8 @@ class DistanceTest
 		Distance d2 = new Distance();
 		d2.setFeet(feet2);
 		d2.setInch(inch2);
-		d1.sum(d2);
+		Distance sum = new Distance();
+		sum = Distance.sum(d1,d2);
+		sum.display();
 	}
 }

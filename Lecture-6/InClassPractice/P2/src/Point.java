@@ -1,7 +1,8 @@
 class Point
 {
-	private static float x;
-	private static float y;
+	private float x;
+	private float y;
+	private float dist;
 
 	Point()
 	{
@@ -15,27 +16,33 @@ class Point
 		this.y=y;
 	}
 
-	public void setValueX(float x)
+	void setValueX(float x)
 	{
 		this.x=x;
 	}
-	public void setValueY(float y)
+	void setValueY(float y)
 	{
 		this.y=y;
 	}
-	public static float getValueX()
+	float getValueX()
 	{
 		return x;
 	}
 
-	public static float getValueY()
+	float getValueY()
 	{
 		return y;
 	}
 
-	public static float calcDistance(Point p2)
+	static Point calcDistance(Point p1,Point p2)
 	{
-		float dist = (float) Math.sqrt(Math.pow((getValueX()-p2.getValueX()),2)+Math.pow((getValueY()+p2.getValueY()),2));
-		return dist;
+		Point temp = new Point();
+		temp.dist = (float) Math.sqrt(Math.pow((p1.getValueX()-p2.getValueX()),2)+Math.pow((p1.getValueY()+p2.getValueY()),2));
+		return temp;
+	}
+
+	void display()
+	{
+		System.out.println("Distance b/w two points is: "+this.dist);
 	}
 }
