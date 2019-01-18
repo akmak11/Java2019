@@ -14,6 +14,7 @@ public class StackTest
             System.out.println("3. isEmpty()");
             System.out.println("4. isFull()");
             System.out.println("5. spaceLeft()");
+            System.out.println("6. displayStack()");
             int choice = scan.nextInt();
             switch(choice)
             {
@@ -38,6 +39,10 @@ public class StackTest
                 case 5:
                 int spcLeft=s.spaceLeft();
                 System.out.println(spcLeft);
+                break;
+
+                case 6:
+                s.displayStack();
                 break;
 
                 default: System.out.println("Invalid Choice");

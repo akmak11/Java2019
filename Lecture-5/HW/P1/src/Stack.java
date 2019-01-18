@@ -10,7 +10,7 @@ class Stack
   
     boolean isEmpty() 
     { 
-        return (topOfStack<0); 
+        return (topOfStack==-1); 
     } 
     
     int spaceLeft()
@@ -19,7 +19,7 @@ class Stack
     }
     boolean isFull() 
     { 
-        return (topOfStack>0); 
+        return (topOfStack==9);
     }
 
     boolean push(int x) 
@@ -50,5 +50,17 @@ class Stack
             System.out.println(x+" has been popped.");
             return x;
         } 
-    } 
+    }
+
+    void displayStack()
+    {
+        if (isEmpty())
+            System.out.println("Stack is empty");
+        else
+        {
+            System.out.println("Stack is: ");
+            for (int count = 0;count<(topOfStack+1);count++)
+                System.out.println(stack[count]);
+        }
+    }
 }
