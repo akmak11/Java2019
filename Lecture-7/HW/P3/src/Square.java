@@ -16,9 +16,7 @@ class Square extends Rectangle
 
 	Square(double s,boolean f,String c)
 	{
-		super(c,f);
-		length=s;
-		width=s;
+		super(s,s,f,c);
 	}
 
 	void setSide(double s)
@@ -42,8 +40,8 @@ class Square extends Rectangle
 		width = s;
 	}
 
-	String toStringg()
+	public String toString()
 	{
-		return "";
+		return getColor()+"\t"+isFilled()+"\t"+getLength()+"\t"+getWidth()+"\t"+getArea()+"\t"+getPerimeter();
 	}
 }

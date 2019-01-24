@@ -35,8 +35,8 @@ class Shape
 		filled=f;
 	}
 
-	String toStringg()
+	public String toString()
 	{
-		return "";
+		return getColor()+"\t"+isFilled();
 	}
 }

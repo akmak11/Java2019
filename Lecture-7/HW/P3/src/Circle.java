@@ -40,8 +40,8 @@ class Circle extends Shape
 		return ((2*3.14*radius));
 	}
 
-	String toStringg()
+	public String toString()
 	{
-		return "";
+		return getColor()+"\t"+isFilled()+"\t"+radius+"\t"+getArea()+"\t"+getPerimeter();
 	}
 }

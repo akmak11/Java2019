@@ -50,11 +50,11 @@ class Rectangle extends Shape
 
 	double getPerimeter()
 	{
-		return ((2*(length*width)));
+		return ((2*(length+width)));
 	}
 
-	String toStringg()
+	public String toString()
 	{
-		return "";
+		return getColor()+"\t"+isFilled()+"\t"+getLength()+"\t"+getWidth()+"\t"+getArea()+"\t"+getPerimeter();
 	}
 }

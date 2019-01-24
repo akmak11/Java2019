@@ -37,16 +37,20 @@ class Point2D
 
 	void setXY(float x,float y)
 	{
-
+		this.x = x;
+		this.y = y;
 	}
 
-	float getXY()
+	float[] getXY()
 	{
-		return 0f;
+		float xy[] = new float [2];
+		xy[0] = x;
+		xy[1] = y;
+		return xy;
 	}
 
-	String toStringg()
+	public String toString()
 	{
-		return (("("+x+","+y+")"));
+		return "("+getX()+", "+getY()+")";
 	}
 }

@@ -26,16 +26,22 @@ class Point3D extends Point2D
 
 	void setXYZ(float x,float y,float z)
 	{
-
+		setX(x);
+		setY(y);
+		this.z=z;
 	}
 
-	float getXYZ()
+	float[] getXYZ()
 	{
-		return 0f;
+		float xyz [] = new float [3];
+		xyz[0] = getX();
+		xyz[1] = getY();
+		xyz[2] = getZ();
+		return xyz;	
 	}
 
-	String toStringg()
+	public String toString()
 	{
-		return (("("+getX()+","+getY()+","+z+")"));
+		return "("+getX()+", "+getY()+", "+getZ()+")";
 	}
 }
