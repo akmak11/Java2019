@@ -59,6 +59,7 @@ class StudentDriver
 			String insti = scan.nextLine();
 			System.out.println("CGPA");
 			float cgpa = scan.nextFloat();
+			stu1.qual[i] = new Qualification();
 			stu1.qual[i].setQual(qualName,uni,insti,cgpa);
 		}
 
@@ -83,6 +84,7 @@ class StudentDriver
 			String role = scan.nextLine();
 			System.out.println("How many responsibilities were there during for this project?");
 			int noOfRespo = scan.nextInt();
+			stu1.projects[i] = new Project();
 			stu1.projects[i].responsibilities = new String[noOfRespo];
 
 			for (int j=0;j<noOfRespo;j++)
@@ -92,7 +94,9 @@ class StudentDriver
 			}
 
 			stu1.projects[i].setProject(name,role);
+			stu1.projects[i].startDate = new Date();
 			stu1.projects[i].setStartDate(sDay,sMonth,sYear);
+			stu1.projects[i].endDate = new Date();
 			stu1.projects[i].setEndDate(eDay,eMonth,eYear);
 		}
 
