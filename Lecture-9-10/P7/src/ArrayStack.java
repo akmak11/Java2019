@@ -21,11 +21,25 @@ public class ArrayStack
                 case 1:
                 System.out.println("Enter the value to be pushed");
                 int x=scan.nextInt();
-                s.push(x);
+                try
+                {   
+                    s.push(x);
+                }
+                catch (Exception e)
+                {
+                    System.out.println(e);
+                }
                 break;
     
                 case 2:
-                s.pop();
+                try
+                {
+                    s.pop();
+                }
+                catch (Exception e)
+                {
+                    System.out.println(e);
+                }
                 break;
 
                 case 3:

@@ -22,12 +22,11 @@ class Stack
         return (topOfStack==9);
     }
 
-    boolean push(int x) 
+    boolean push(int x) throws PushException
     { 
         if (topOfStack >= (10 - 1))
         { 
-            System.out.println("Stack Overflow"); 
-            return false; 
+            throw new PushException ("InvalidPush: StackOverflowError"); 
         } 
         else
         { 
@@ -37,12 +36,11 @@ class Stack
         } 
     } 
   
-    int pop() 
+    int pop() throws PopException
     { 
         if (topOfStack<0)
         { 
-            System.out.println("Stack Underflow"); 
-            return 0; 
+            throw new PopException ("Invalid Pop: StackUnderflowError");
         }
         else
         { 
