@@ -12,13 +12,17 @@ class StudentDriver
 
 
 		System.out.println("Enter the address details: (Line1,Line2,City,State,PinCode)");
+		System.out.print("Line1: ");
 		String line1 = scan.nextLine();
+		System.out.print("\nLine2: ");
 		String line2 = scan.nextLine();
+		System.out.print("\nCity: ");
 		String city = scan.nextLine();
+		System.out.print("\nState: ");
 		String state = scan.nextLine();
+		System.out.print("\nPinCode: ");
 		int pinCode = scan.nextInt();
 		stu1.addr.setValueAddress(line1,line2,city,state,pinCode);
-
 
 
 		System.out.println("Enter the DOB: (date,month,year)");
@@ -71,7 +75,8 @@ class StudentDriver
 		System.out.println("Enter the data for each project: Name, StartDate, EndDate, Role, Responsibilities");
 		for (int i=0;i<noOfProjects;i++)
 		{
-			System.out.println((i+1)+".");
+			System.out.println("Project No. "+(i+1)+".");
+			scan.nextLine();
 			String name = scan.nextLine();
 			System.out.println("Started on");
 			int sDay = scan.nextInt();
@@ -81,8 +86,10 @@ class StudentDriver
 			int eDay = scan.nextInt();
 			int eMonth = scan.nextInt();
 			int eYear = scan.nextInt();
+			System.out.println("Role:");
+			scan.nextLine();
 			String role = scan.nextLine();
-			System.out.println("How many responsibilities were there during for this project?");
+			System.out.println("How many responsibilities were there for this project?");
 			int noOfRespo = scan.nextInt();
 			stu1.projects[i] = new Project();
 			stu1.projects[i].responsibilities = new String[noOfRespo];
@@ -90,6 +97,7 @@ class StudentDriver
 			for (int j=0;j<noOfRespo;j++)
 			{
 				System.out.println("Enter responsibility no. "+(j+1));
+				scan.nextLine();
 				stu1.projects[i].responsibilities[j] = scan.nextLine();
 			}
 

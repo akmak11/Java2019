@@ -8,8 +8,8 @@ class Project
 
 	void setProject(String name,String role)
 	{
-		name=name;
-		role=role;
+		this.name=name;
+		this.role=role;
 	}
 
 	void setStartDate (int d,int m, int y)
