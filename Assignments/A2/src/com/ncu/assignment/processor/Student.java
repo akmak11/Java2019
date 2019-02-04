@@ -1,17 +1,17 @@
 package com.ncu.assignment.processor;
 public class Student
 {
-	String firstName;
-	String lastName;
-	Address addr = new Address();
-	Date dob = new Date();
-	String [] skills;
-	Qualification qual[];
-	Project projects[];
-	String eMail;
-	String contactNo;
+	public String firstName;
+	public String lastName;
+	public Address addr = new Address();
+	public Datee dob = new Datee();
+	public String [] skills;
+	public Qualification qual[];
+	public Project projects[];
+	public String eMail;
+	public String contactNo;
 	
-	void display()
+	public void display()
 	{
 		System.out.println("Name of Student: "+firstName+" "+lastName);
 		System.out.println("Address: "+addr.line1+", "+addr.line2+", "+addr.city+", "+addr.state+"-"+addr.pinCode);

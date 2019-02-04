@@ -1,12 +1,12 @@
 package com.ncu.assignment.processor;
 public class Qualification
 {
-	String qualName;
-	String university;
-	String institute;
-	float cgpa;
+	public String qualName;
+	public String university;
+	public String institute;
+	public float cgpa;
 
-	void setQual (String qname, String uni, String insti, float p)
+	public void setQual (String qname, String uni, String insti, float p)
 	{
 		qualName = qname;
 		university = uni;

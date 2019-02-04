@@ -1,12 +1,14 @@
+package com.ncu.assignment.main;
 import java.util.*;
 import com.ncu.assignment.validation.*;
 import com.ncu.assignment.processor.*;
 import com.ncu.assignment.exception.*;
-package com.ncu.assignment.main;
+
 public class StudentDriver
 {
 	public static void main(String[] args)
 	{
+		StudentValidation val = new StudentValidation();
 		Scanner scan = new Scanner(System.in);
 		Student stu1 = new Student();
 		System.out.println("Enter the name of Student:");
@@ -35,13 +37,18 @@ public class StudentDriver
 		month = scan.nextInt();
 		year = scan.nextInt();
 		stu1.dob.setValueDate(date,month,year);
-		validateDate(stu1.dob);
+		try
+		{	val.validateDate(stu1.dob);	}
+		catch (Exception e) 	{ e.printStackTrace();}
 
 
 
 		System.out.println("Enter the number of skills the student possess");
 		int noOfSkills = scan.nextInt();
-		validateSkills(noOfSkills);
+		try
+		{	val.validateSkills(noOfSkills);	}
+		catch (Exception e) 	{ e.printStackTrace();	}
+
 		stu1.skills = new String [noOfSkills];
 
 		for (int i=0;i<noOfSkills;i++)
@@ -55,7 +62,8 @@ public class StudentDriver
 
 		System.out.println("How many qualifications does the student have?");
 		int noOfQual = scan.nextInt();
-		validateQual(noOfQual);
+		try { 	val.validateQual(noOfQual); }
+		catch (Exception e) 	{ e.printStackTrace();}
 		stu1.qual = new Qualification [noOfQual];
 		System.out.println("Enter the data for each Qualification:");
 		for (int i=0; i<noOfQual;i++)
@@ -109,24 +117,30 @@ public class StudentDriver
 			}
 
 			stu1.projects[i].setProject(name,role);
-			stu1.projects[i].startDate = new Date();
+			stu1.projects[i].startDate = new Datee();
 			stu1.projects[i].setStartDate(sDay,sMonth,sYear);
-			stu1.projects[i].endDate = new Date();
+			stu1.projects[i].endDate = new Datee();
 			stu1.projects[i].setEndDate(eDay,eMonth,eYear);
-			validateDate(stu1.projects[i].startDate);
-			validateDate(stu1.projects[i].endDate);
+			try {	val.validateDate(stu1.projects[i].startDate);	}
+			catch (Exception e) 	{ e.printStackTrace();}
+			try { val.validateDate(stu1.projects[i].endDate);	}
+			catch (Exception e) 	{ e.printStackTrace();}
 
 		}
 
 
 
 		System.out.println("Enter student's email address");
+		scan.nextLine();
 		stu1.eMail = scan.nextLine();
 		System.out.println("Enter student's contact number");
 		stu1.contactNo = scan.nextLine();
 
-		validateMandatoryFields(stu1.firstname,stu1.addr,stu1.dob,stu1.eMail,stu1.contactNo);		//String fName, Address ad, Date dob, String email, String cNo
-
+		try
+		{
+			val.validateMandatoryFields(stu1.firstName,stu1.addr,stu1.dob,stu1.eMail,stu1.contactNo);		//String fName, Address ad, Date dob, String email, String cNo
+		}
+		catch (Exception e) 	{ e.printStackTrace();}
 		stu1.display();
 	}
 }
