@@ -5,11 +5,12 @@ import java.util.regex.*;
 import java.util.*;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
+
 class NameValidator
 {
-	boolean nameValidator (String filename, String filetype)
+	boolean nameValidator (String filename)
 	{
-		System.out.println("File name is: "+filename+ " and its type is: "+filetype);
+		System.out.println("\n\nFile name is: "+filename);
 		boolean b;
 
 		Properties prop = new Properties();
@@ -18,136 +19,97 @@ class NameValidator
 		Logger logger = Logger.getLogger(NameValidator.class);
 		PropertyConfigurator.configure("C:\\Users\\Akshay\\Desktop\\Java2019\\csvtojson\\configs\\logger\\logger.properties");
 		
-		try 	{input = new FileInputStream("C:\\Users\\Akshay\\Desktop\\Java2019\\csvtojson\\configs\\constants\\exceptions.properties");prop.load(input);emptyFileName(filename);}
-		catch 	(EmptyFileNameException e)	{logger.error("\n\n"+e+(prop.getProperty("emptyNameMessage")));}
-		catch   (Exception e) {System.out.println(e);}
-
-		//try {missingDot(filename);}
-		//catch 	(MissingDotException e)			{System.out.println(e);}
-
-		b=fileFormat(filename);
-		if (b==true)
-			return false;
-
-		b=fileLength(filename);
-		if (b==true)
-			return false;
-
-		b=specialCharacter(filename);
-		if (b==true)
-			return false;
-
-		if (filetype == "csv")
+		try
 		{
-			b=csvOnly(filename);
-			if (b==true)
-				return false;
+			input = new FileInputStream("C:\\Users\\Akshay\\Desktop\\Java2019\\csvtojson\\configs\\constants\\exceptions.properties");
+			prop.load(input);
+			emptyFileName(filename);
+			missingDot(filename);
+			fileFormat(filename);
+			fileLength(filename);
+			specialCharacter(filename);
+			csvOnly(filename);
+			fileNotAvailable(filename);
+			fileExists(filename);
 		}
-		else
-		{
-			b=jsonOnly(filename);
-			if (b==true)
-				return true;
-			else
-				return false;
-		}
-
-		if (filetype == "csv")
-		{
-			b=fileNotAvailable(filename);
-			if(b==true)
-				return false;
-		}
-		else
-		{
-			b=fileExist(filename);
-			if (b==true)
-				return false;
-		}
+		catch (EmptyFileNameException e)		{logger.error("\n"+e+(prop.getProperty("emptyNameMessage")));}
+		catch (MissingExtensionException e)		{logger.error("\n"+e+(prop.getProperty("extensionMessage")));}
+		//catch (FileAlreadyExists e)				{logger.error("\n\n"+e+(prop.getProperty("fileExistsMessage")));}
+		catch (FileNameLengthException e)		{logger.error("\n"+e+(prop.getProperty("longFileNameMessage")));}
+		catch (InvalidExtensionException e)		{logger.error("\n"+e+(prop.getProperty("invalidException")));}
+		catch (FileNotAvailable e)				{logger.error("\n"+e+(prop.getProperty("notAvailableMessage")));}
+		catch (SpecialCharacterException e)		{logger.error("\n"+e+(prop.getProperty("specialcharacterMessage")));}
+		catch (Exception e)						{logger.error("\n"+e);}
 
 		return true;			// valid filename
 	}
 
+	
 	private void emptyFileName(String filename) throws EmptyFileNameException
 	{
 		if (filename=="")
-			throw new EmptyFileNameException ("EmptyFileName");
+			throw new EmptyFileNameException ("");
 	}
 
-	/*private void missingDot(String filename) throws MissingDotException
+	private void missingDot(String filename) throws MissingExtensionException
 	{
-		Pattern costPattern = Pattern.compile("[.]");
+		Pattern costPattern = Pattern.compile("\\.");
 		Matcher costMatcher = costPattern.matcher(filename);
 		boolean value = costMatcher.find();
-		if (value==true)
-			throw new MissingDotException ("Missing dot in filename");
-	}*/
+		if (value==false)
+			throw new MissingExtensionException ("");
+	}
 
-
-	boolean fileFormat(String filename)
+	private void fileFormat(String filename) throws InvalidExtensionException
 	{
-		String [] extn = filename.split(".");
+		String [] extn = filename.split(("\\."));
 		if (extn.length<=1)
-			return true;
-		else
-			return false;
+			throw new InvalidExtensionException ("");
 	}
 
-	boolean fileLength(String filename)
+	private void fileLength(String filename) throws FileNameLengthException
 	{
-		String nameLength = filename.split(".") [0];
+		String nameLength = filename.split("\\.") [0];
 		if (nameLength.length()>25)
-			return true;
-		else
-			return false;
+			throw new FileNameLengthException ("");
 	}
 
-	boolean specialCharacter(String filename)
+	private void specialCharacter(String filename) throws SpecialCharacterException
 	{
-		filename = filename.split(".")[0];
-		Pattern patterGet = Pattern.compile("[@#$%^&(,)_]");
-		Matcher check = patterGet.matcher(filename);
+		filename = filename.split("\\.")[0];
+		Pattern patternGet = Pattern.compile("[@#$%^&(,)_]");
+		Matcher check = patternGet.matcher(filename);
 		boolean finalValue = check.find();
 		if (finalValue==true)
-			return true;
-		else 
-			return false;
+			throw new SpecialCharacterException ("");
 	}
 
-	boolean csvOnly (String filename)
+	private void csvOnly (String filename)  throws InvalidExtensionException
 	{
-		String [] name = filename.split(".");
-		if (name[1].equals("csv")==true)
-			return false;
-		else
-			return true;
+		String [] name = filename.split("\\.");
+		if (name[1].equals("csv")==false)
+			throw new InvalidExtensionException ("");
 	}
 
-	boolean jsonOnly(String filename)
+	/*private void jsonOnly(String filename)  throws InvalidExtensionException
 	{
-		String [] name  = filename.split(".");
+		String [] name  = filename.split("\\.");
 		if (name[1].equals("json")==true)
-			return false;
-		else
-			return true;
-	}
+			throw new InvalidExtensionException ("Invalid extension");
+	}*/
 
-	boolean fileNotAvailable(String filename)
+	private void fileNotAvailable(String filename) throws FileNotAvailable
 	{
 		File f = new File(filename);
-		if(f.exists()==true)
-			return false;
-		else
-			return true;
+		if(f.exists()==false)
+			throw new FileNotAvailable ("");
 	}
 
-	boolean fileExist (String filename)
+	private void fileExists (String filename) throws FileAlreadyExists
 	{
 		File f = new File("./"+filename);
 		if(f.exists()==true)
-			return true;
-		else
-			return false;
+			throw new FileAlreadyExists ("");
 	}
 }
 
@@ -156,7 +118,17 @@ class testnameValidator
 	public static void main(String[] args)
 	{
 		NameValidator csvObject = new NameValidator();
-		boolean checkValidator = csvObject.nameValidator("","csv");
+		boolean checkValidator = csvObject.nameValidator("");
+		System.out.println(checkValidator);
+		checkValidator = csvObject.nameValidator("example");
+		System.out.println(checkValidator);
+		checkValidator = csvObject.nameValidator("example.");
+		System.out.println(checkValidator);
+		checkValidator = csvObject.nameValidator("abcdefghijklmnopqrstuvwxyz.csv");
+		System.out.println(checkValidator);
+		checkValidator = csvObject.nameValidator("ex@mple.csv");
+		System.out.println(checkValidator);
+		checkValidator = csvObject.nameValidator("example.csv");
 		System.out.println(checkValidator);
 	}
 }
