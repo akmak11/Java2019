@@ -1,1 +1,1 @@
-# JAVA course - II Semester
+# JAVA course [Semester-II]
