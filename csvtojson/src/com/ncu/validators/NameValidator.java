@@ -6,15 +6,18 @@ import java.util.*;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
-class NameValidator
+public class NameValidator
 {
-	boolean nameValidator (String filename)
+	public boolean nameValidator (String filename)
 	{
 		System.out.println("\n\nFile name is: "+filename);
 		boolean b;
 
 		Properties prop = new Properties();
 		FileInputStream input = null;
+
+		String csvfilepath = "C:\\Users\\Akshay\\Desktop\\Java2019\\csvtojson\\csvs\\";
+		String jsonfilepath = "C:\\Users\\Akshay\\Desktop\\Java2019\\csvtojson\\jsons\\";
 
 		Logger logger = Logger.getLogger(NameValidator.class);
 		PropertyConfigurator.configure("C:\\Users\\Akshay\\Desktop\\Java2019\\csvtojson\\configs\\logger\\logger.properties");
@@ -29,16 +32,16 @@ class NameValidator
 			fileLength(filename);
 			specialCharacter(filename);
 			csvOnly(filename);
-			fileNotAvailable(filename);
+			fileNotAvailable((csvfilepath+filename));
 			fileExists(filename);
 		}
-		catch (EmptyFileNameException e)		{logger.error("\n"+e+(prop.getProperty("emptyNameMessage")));}
-		catch (MissingExtensionException e)		{logger.error("\n"+e+(prop.getProperty("extensionMessage")));}
-		//catch (FileAlreadyExists e)				{logger.error("\n\n"+e+(prop.getProperty("fileExistsMessage")));}
-		catch (FileNameLengthException e)		{logger.error("\n"+e+(prop.getProperty("longFileNameMessage")));}
-		catch (InvalidExtensionException e)		{logger.error("\n"+e+(prop.getProperty("invalidException")));}
-		catch (FileNotAvailable e)				{logger.error("\n"+e+(prop.getProperty("notAvailableMessage")));}
-		catch (SpecialCharacterException e)		{logger.error("\n"+e+(prop.getProperty("specialcharacterMessage")));}
+		catch (EmptyFileNameException e)		{logger.error("\n"+e+(prop.getProperty("emptyNameMessage")));return false;}
+		catch (MissingExtensionException e)		{logger.error("\n"+e+(prop.getProperty("extensionMessage")));return false;}
+		//catch (FileAlreadyExists e)				{logger.error("\n\n"+e+(prop.getProperty("fileExistsMessage")));return false;}
+		catch (FileNameLengthException e)		{logger.error("\n"+e+(prop.getProperty("longFileNameMessage")));return false;}
+		catch (InvalidExtensionException e)		{logger.error("\n"+e+(prop.getProperty("invalidException")));return false;}
+		catch (FileNotAvailable e)				{logger.error("\n"+e+(prop.getProperty("notAvailableMessage")));return false;}
+		catch (SpecialCharacterException e)		{logger.error("\n"+e+(prop.getProperty("specialcharacterMessage")));return false;}
 		catch (Exception e)						{logger.error("\n"+e);}
 
 		return true;			// valid filename
@@ -94,7 +97,7 @@ class NameValidator
 	/*private void jsonOnly(String filename)  throws InvalidExtensionException
 	{
 		String [] name  = filename.split("\\.");
-		if (name[1].equals("json")==true)
+		if (name[1].equals("json")==false)
 			throw new InvalidExtensionException ("Invalid extension");
 	}*/
 
@@ -113,7 +116,7 @@ class NameValidator
 	}
 }
 
-class testnameValidator
+/*class testnameValidator
 {
 	public static void main(String[] args)
 	{
@@ -131,4 +134,4 @@ class testnameValidator
 		checkValidator = csvObject.nameValidator("example.csv");
 		System.out.println(checkValidator);
 	}
-}
+}*/
